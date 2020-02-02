@@ -1,17 +1,25 @@
-from flask import Flask, request
+from flask import Flask, request, Blueprint, jsonify
 from werkzeug.exceptions import MethodNotAllowed, BadRequest
 app = Flask(__name__)
+api = (Blueprint('api', __name__))
+
+# run with: env FLASK_APP=hello.py flask run
 
 
-def sum(a, b):
-    return a + b
+def _sum(a, b):
+    return str(int(a) + int(b))
 
 
-@app.route('/', methods=['GET'])
+@api.route('/', methods=['GET'])
 def hello_world():
     if request.method != 'GET':
-        return MethodNotAllowed('Only GET method is allowed')
+        raise MethodNotAllowed('Only GET method is allowed')
 
     if 'a' not in request.args or 'b' not in request.args:
-        return BadRequest('Parameters \'a\' and \'b\' are mandatory')
-    return sum(request.args['a'], request.args['b'])
+        raise BadRequest('Parameters \'a\' and \'b\' are mandatory')
+    if not request.args['a'].isdigit() or not request.args['b'].isdigit():
+        raise BadRequest('Parameters \'a\' and \'b\' have to be numbers')
+    return jsonify(_sum(request.args['a'], request.args['b']))
+
+
+app.register_blueprint(api)
