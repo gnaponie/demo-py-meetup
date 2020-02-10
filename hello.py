@@ -7,7 +7,7 @@ api = (Blueprint('api', __name__))
 
 
 def _sum(a, b):
-    return str(int(a) + int(b))
+    return int(a) + int(b)
 
 
 @api.route('/', methods=['GET'])

@@ -11,8 +11,8 @@ index de4d8a3..5af73db 100644
  
  
  def _sum(a, b):
--    return str(int(a) + int(b))
-+    return str(a + b)
+-    return int(a) + int(b)
++    return a + b
  
  
  @api.route('/', methods=['GET'])
