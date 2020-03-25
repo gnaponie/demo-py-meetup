@@ -10,9 +10,9 @@ index de4d8a3..5af73db 100644
 @@ -7,11 +8,12 @@ api = (Blueprint('api', __name__))
  
  
- def _sum(a, b):
--    return int(a) + int(b)
-+    return a + b
+ def _sum(number_a, number_b):
+-    return int(number_a) + int(number_b)
++    return number_a + number_b
  
  
  @api.route('/', methods=['GET'])

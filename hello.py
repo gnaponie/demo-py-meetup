@@ -6,8 +6,8 @@ api = (Blueprint('api', __name__))
 # run with: env FLASK_APP=hello.py flask run
 
 
-def _sum(a, b):
-    return int(a) + int(b)
+def _sum(number_a, number_b):
+    return int(number_a) + int(number_b)
 
 
 @api.route('/', methods=['GET'])
