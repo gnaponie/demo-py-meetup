@@ -5,7 +5,7 @@ from hello import app, _sum
 
 
 def test_sum():
-    assert _sum(1, 2) == 3
+    assert _sum('1', '2') == 3
 
 
 @pytest.fixture
